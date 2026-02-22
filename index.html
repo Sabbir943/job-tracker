@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Job tracker</title>
+    <!-- tailwind+daisy -->
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <!-- font awesome -->
@@ -14,54 +15,57 @@
 </head>
 
 <body>
-
-    <header class="max-w-5xl mx-auto mt-[40px] mb-[40px] ">
+<div class="sticky top-0 bg-base-200 pb-2 pt-3">
+      <header class="max-w-5xl mx-auto  mb-[40px] ">
         <h1 class="text-3xl  font-bold text-[#002C5C]">Job Application Tracker</h1>
         <div class=" grid grid-cols-3 gap-4 mt-5 ">
             <div class=" bg-slate-300 text-black p-3 font-bold rounded-lg">
-                <p id="total">Total</p>
-                <p id="">0</p>
+                <p id="">Total</p>
+                <p id="total">0</p>
             </div>
             <div class="  bg-slate-300 text-green-500 p-3 font-bold rounded-lg">
-                <p id="interview">Interview</p>
-                <p id="">0</p>
+                <p id="">Interview</p>
+                <p id="interview">0</p>
 
             </div>
             <div class=" bg-slate-300 text-red-500 p-3 font-bold rounded-lg">
-                <p id="rejected">Rejected</p>
-                <p id="">0</p>
+                <p id="">Rejected</p>
+                <p id="rejected">0</p>
 
             </div>
         </div>
 
     </header>
+</div>
+  
     <hr class=" my-7">
 
     <main id="mainContainer" class="max-w-5xl mx-auto">
         <div class="mb-[40px] mt-[30px]">
-            <button class="  btn bg-blue-500 text-white mr-3">All</button>
-            <button class="  btn mr-3 ">Interview</button>
-            <button class="  btn mr-3 ">Rejected</button>
+            <button onclick="toggleStyle('all-btn')" id="all-btn" class="a btn bg-blue-500 text-white mr-3">All</button>
+            <button onclick="toggleStyle('interview-btn')" id="interview-btn" class="a btn mr-3 ">Interview</button>
+            <button onclick="toggleStyle('rejected-btn')" id="rejected-btn" class="a btn mr-3 ">Rejected</button>
 
         </div>
 
 
-
+       <div id="job-fillter" class="hidden">
+           
+            </div>
         <div id="all-cart">
+            
 
-
-
-            <div id="p-1" class=" flex flex-row justify-between border p-5 shadow rounded-md mb-[40px]">
+           <div id="job-1" class=" flex flex-row justify-between border p-5 shadow rounded-md mb-[40px]">
 
                 <div>
-                    <h1 class="text-[20px] text-[#002C5C] font-bold">Mobile First Corp</h1>
+                    <h1  class="company-name text-[20px] text-[#002C5C] font-bold">Mobile First Corp</h1>
 
-                    <p class=" text-neutral/50 mt-2 mb-2 font-bold ">React Native Developer</p>
+                    <p class="empoloye-pos text-neutral/50 mt-2 mb-2 font-bold ">React Native Developer</p>
 
-                    <p class="text-neutral/50 font-bold">Remot • Full-time • $130,000 - $175,000</p>
+                    <p class="empoloye-work text-neutral/50 font-bold">Remot • Full-time • $130,000 - $175,000</p>
 
                     <div class="mt-2 mb-2">
-                        <button class=" text-[#002C5C] p-2 rounded text-neutral/50 border font-bold bg-base-200">Not
+                        <button class="apply text-[#002C5C] p-2 rounded text-neutral/50 border font-bold bg-base-200">Not
                             Applied</button>
                     </div>
 
@@ -70,9 +74,9 @@
                         Native. Work on products used by millions of users worldwide.</p>
 
 
-                    <button class=" btn btn-outline btn-success font-bold">Interview</button>
+                    <button class="interview btn btn-outline btn-success font-bold">Interview</button>
 
-                    <button class=" btn btn-outline btn-secondary font-bold">Rejected</button>
+                    <button class="rejected btn btn-outline btn-secondary font-bold">Rejected</button>
 
                 </div>
 
@@ -81,21 +85,21 @@
                 </div>
 
             </div>
-            <div id="p-1" class=" flex flex-row justify-between border p-5 shadow rounded-md mb-[40px]">
+            <div id="job-2" class=" flex flex-row justify-between border p-5 shadow rounded-md mb-[40px]">
 
                 <div>
-                    <h1 class="text-[20px] text-[#002C5C] font-bold">WebFlow Agency</h1>
+                    <h1 class="company-name text-[20px] text-[#002C5C] font-bold">WebFlow Agency</h1>
 
-                    <p class=" text-neutral/50 mt-2 mb-2 font-bold ">Web Designer & Developer</p>
+                    <p class="empoloye-pos  text-neutral/50 mt-2 mb-2 font-bold ">Web Designer & Developer</p>
 
-                    <p class="text-neutral/50 font-bold">Los Angeles, CA
+                    <p class="empoloye-work  text-neutral/50 font-bold">Los Angeles, CA
                         •
                         Part-time
                         •
                         $80,000 - $120,000</p>
 
                     <div class="mt-2 mb-2">
-                        <button class=" text-[#002C5C] p-2 rounded text-neutral/50 border font-bold bg-base-200">Not
+                        <button class="apply text-[#002C5C] p-2 rounded text-neutral/50 border font-bold bg-base-200">Not
                             Applied</button>
                     </div>
 
@@ -104,9 +108,9 @@
                         Must have portfolio and experience with modern web design trends.</p>
 
 
-                    <button class=" btn btn-outline btn-success font-bold">Interview</button>
+                    <button class="interview btn btn-outline btn-success font-bold">Interview</button>
 
-                    <button class=" btn btn-outline btn-secondary font-bold">Rejected</button>
+                    <button class="rejected btn btn-outline btn-secondary font-bold">Rejected</button>
 
                 </div>
 
@@ -115,21 +119,21 @@
                 </div>
 
             </div>
-            <div id="p-1" class=" flex flex-row justify-between border p-5 shadow rounded-md mb-[40px]">
+            <div id="job-3" class=" flex flex-row justify-between border p-5 shadow rounded-md mb-[40px]">
 
                 <div>
-                    <h1 class="text-[20px] text-[#002C5C] font-bold">DataViz Solutions</h1>
+                    <h1 class="company-name text-[20px] text-[#002C5C] font-bold">DataViz Solutions</h1>
 
-                    <p class=" text-neutral/50 mt-2 mb-2 font-bold ">Data Visualization Specialist</p>
+                    <p class="empoloye-pos text-neutral/50 mt-2 mb-2 font-bold ">Data Visualization Specialist</p>
 
-                    <p class="text-neutral/50 font-bold">Boston, MA
+                    <p class="empoloye-work  text-neutral/50 font-bold">Boston, MA
                         •
                         Full-time
                         •
                         $125,000 - $165,000</p>
 
                     <div class="mt-2 mb-2">
-                        <button class=" text-[#002C5C] p-2 rounded text-neutral/50 border font-bold bg-base-200">Not
+                        <button class="apply text-[#002C5C] p-2 rounded text-neutral/50 border font-bold bg-base-200">Not
                             Applied</button>
                     </div>
 
@@ -139,9 +143,9 @@
                     </p>
 
 
-                    <button class=" btn btn-outline btn-success font-bold">Interview</button>
+                    <button class="interview btn btn-outline btn-success font-bold">Interview</button>
 
-                    <button class=" btn btn-outline btn-secondary font-bold">Rejected</button>
+                    <button class="rejected btn btn-outline btn-secondary font-bold">Rejected</button>
 
                 </div>
 
@@ -150,21 +154,21 @@
                 </div>
 
             </div>
-            <div id="p-1" class=" flex flex-row justify-between border p-5 shadow rounded-md mb-[40px]">
+            <div id="job-4" class=" flex flex-row justify-between border p-5 shadow rounded-md mb-[40px]">
 
                 <div>
-                    <h1 class="text-[20px] text-[#002C5C] font-bold">CloudFirst Inc</h1>
+                    <h1 class="company-name  text-[20px] text-[#002C5C] font-bold">CloudFirst Inc</h1>
 
-                    <p class=" text-neutral/50 mt-2 mb-2 font-bold ">Backend Developer</p>
+                    <p class="empoloye-pos text-neutral/50 mt-2 mb-2 font-bold ">Backend Developer</p>
 
-                    <p class="text-neutral/50 font-bold">Seattle, WA
+                    <p class="empoloye-work   text-neutral/50 font-bold">Seattle, WA
                         •
                         Full-time
                         •
                         $140,000 - $190,000</p>
 
                     <div class="mt-2 mb-2">
-                        <button class=" text-[#002C5C] p-2 rounded text-neutral/50 border font-bold bg-base-200">Not
+                        <button class="apply text-[#002C5C] p-2 rounded text-neutral/50 border font-bold bg-base-200">Not
                             Applied</button>
                     </div>
 
@@ -173,9 +177,9 @@
                         and AWS. Work with modern DevOps practices and cloud infrastructure.</p>
 
 
-                    <button class=" btn btn-outline btn-success font-bold">Interview</button>
+                    <button class="interview btn btn-outline btn-success font-bold">Interview</button>
 
-                    <button class=" btn btn-outline btn-secondary font-bold">Rejected</button>
+                    <button class="rejected btn btn-outline btn-secondary font-bold">Rejected</button>
 
                 </div>
 
@@ -184,21 +188,21 @@
                 </div>
 
             </div>
-            <div id="p-1" class=" flex flex-row justify-between border p-5 shadow rounded-md mb-[40px]">
+            <div id="job-5" class=" flex flex-row justify-between border p-5 shadow rounded-md mb-[40px]">
 
                 <div>
-                    <h1 class="text-[20px] text-[#002C5C] font-bold">Innovation Labs</h1>
+                    <h1 class="company-name text-[20px] text-[#002C5C] font-bold">Innovation Labs</h1>
 
-                    <p class=" text-neutral/50 mt-2 mb-2 font-bold ">UI/UX Engineer</p>
+                    <p class="empoloye-pos text-neutral/50 mt-2 mb-2 font-bold ">UI/UX Engineer</p>
 
-                    <p class="text-neutral/50 font-bold">Austin, TX
+                    <p class="empoloye-work  text-neutral/50 font-bold">Austin, TX
                         •
                         Full-time
                         •
                         $110,000 - $150,000</p>
 
                     <div class="mt-2 mb-2">
-                        <button class=" text-[#002C5C] p-2 rounded text-neutral/50 border font-bold bg-base-200">Not
+                        <button class="apply text-[#002C5C] p-2 rounded text-neutral/50 border font-bold bg-base-200">Not
                             Applied</button>
                     </div>
 
@@ -207,9 +211,9 @@
                         suite of products. Strong design skills and frontend development expertise required.</p>
 
 
-                    <button class=" btn btn-outline btn-success font-bold">Interview</button>
+                    <button class="interview btn btn-outline btn-success font-bold">Interview</button>
 
-                    <button class=" btn btn-outline btn-secondary font-bold">Rejected</button>
+                    <button class="rejected btn btn-outline btn-secondary font-bold">Rejected</button>
 
                 </div>
 
@@ -218,21 +222,21 @@
                 </div>
 
             </div>
-            <div id="p-1" class=" flex flex-row justify-between border p-5 shadow rounded-md mb-[40px]">
+            <div id="job-6" class=" flex flex-row justify-between border p-5 shadow rounded-md mb-[40px]">
 
                 <div>
-                    <h1 class="text-[20px] text-[#002C5C] font-bold">MegaCorp Solutions</h1>
+                    <h1 class="company-name text-[20px] text-[#002C5C] font-bold">MegaCorp Solutions</h1>
 
-                    <p class=" text-neutral/50 mt-2 mb-2 font-bold ">JavaScript Developer</p>
+                    <p class="empoloye-pos text-neutral/50 mt-2 mb-2 font-bold ">JavaScript Developer</p>
 
-                    <p class="text-neutral/50 font-bold">New York, NY
+                    <p class="empoloye-work  text-neutral/50 font-bold">New York, NY
                         •
                         Full-time
                         •
                         $130,000 - $170,00</p>
 
                     <div class="mt-2 mb-2">
-                        <button class=" text-[#002C5C] p-2 rounded text-neutral/50 border font-bold bg-base-200">Not
+                        <button class="apply text-[#002C5C] p-2 rounded text-neutral/50 border font-bold bg-base-200">Not
                             Applied</button>
                     </div>
 
@@ -240,9 +244,9 @@
                     <p class="notes mt-3 mb-3 text-neutral/50">Build enterprise applications with JavaScript and modern frameworks. We offer competitive compensation, health insurance, and professional development opportunities.</p>
 
 
-                    <button class=" btn btn-outline btn-success font-bold">Interview</button>
+                    <button class="interview btn btn-outline btn-success font-bold">Interview</button>
 
-                    <button class=" btn btn-outline btn-secondary font-bold">Rejected</button>
+                    <button class="rejected btn btn-outline btn-secondary font-bold">Rejected</button>
 
                 </div>
 
@@ -251,21 +255,21 @@
                 </div>
 
             </div>
-            <div id="p-1" class=" flex flex-row justify-between border p-5 shadow rounded-md mb-[40px]">
+            <div id="job-7" class=" flex flex-row justify-between border p-5 shadow rounded-md mb-[40px]">
 
                 <div>
-                    <h1 class="text-[20px] text-[#002C5C] font-bold">StartupXYZ</h1>
+                    <h1 class="company-name text-[20px] text-[#002C5C] font-bold">StartupXYZ</h1>
 
-                    <p class=" text-neutral/50 mt-2 mb-2 font-bold ">Full Stack Engineer</p>
+                    <p class="empoloye-pos text-neutral/50 mt-2 mb-2 font-bold ">Full Stack Engineer</p>
 
-                    <p class="text-neutral/50 font-bold">Remote
+                    <p class="empoloye-work  text-neutral/50 font-bold">Remote
  • 
 Full-time 
 •
  $120,000 - $160,000</p>
 
                     <div class="mt-2 mb-2">
-                        <button class=" text-[#002C5C] p-2 rounded text-neutral/50 border font-bold bg-base-200">Not
+                        <button class="apply text-[#002C5C] p-2 rounded text-neutral/50 border font-bold bg-base-200">Not
                             Applied</button>
                     </div>
 
@@ -273,9 +277,9 @@ Full-time
                     <p class="notes mt-3 mb-3 text-neutral/50">Join our fast-growing startup and work on our core platform. Experience with Node.js and React required. Great benefits and equity package included.</p>
 
 
-                    <button class=" btn btn-outline btn-success font-bold">Interview</button>
+                    <button class="interview btn btn-outline btn-success font-bold">Interview</button>
 
-                    <button class=" btn btn-outline btn-secondary font-bold">Rejected</button>
+                    <button class="rejected btn btn-outline btn-secondary font-bold">Rejected</button>
 
                 </div>
 
@@ -284,21 +288,21 @@ Full-time
                 </div>
 
             </div>
-            <div id="p-1" class=" flex flex-row justify-between border p-5 shadow rounded-md mb-[40px]">
+            <div id="job-8" class=" flex flex-row justify-between border p-5 shadow rounded-md mb-[40px]">
 
                 <div>
-                    <h1 class="text-[20px] text-[#002C5C] font-bold">TechCorp Industries</h1>
+                    <h1 class="company-name  text-[20px] text-[#002C5C] font-bold">TechCorp Industries</h1>
 
-                    <p class=" text-neutral/50 mt-2 mb-2 font-bold ">Senior Frontend Developer</p>
+                    <p class="empoloye-pos text-neutral/50 mt-2 mb-2 font-bold ">Senior Frontend Developer</p>
 
-                    <p class="text-neutral/50 font-bold">San Francisco, CA
+                    <p class="empoloye-work  text-neutral/50 font-bold">San Francisco, CA
  • 
 Full-time 
 •
  $130,000 - $175,000</p>
 
                     <div class="mt-2 mb-2">
-                        <button class=" text-[#002C5C] p-2 rounded text-neutral/50 border font-bold bg-base-200">Not
+                        <button class="apply text-[#002C5C] p-2 rounded text-neutral/50 border font-bold bg-base-200">Not
                             Applied</button>
                     </div>
 
@@ -306,9 +310,9 @@ Full-time
                     <p class="notes mt-3 mb-3 text-neutral/50">We are looking for an experienced Frontend Developer to build scalable web applications using React and TypeScript. You will work with a talented team on cutting-edge projects.</p>
 
 
-                    <button class=" btn btn-outline btn-success font-bold">Interview</button>
+                    <button class="interview btn btn-outline btn-success font-bold">Interview</button>
 
-                    <button class=" btn btn-outline btn-secondary font-bold">Rejected</button>
+                    <button class="rejected btn btn-outline btn-secondary font-bold">Rejected</button>
 
                 </div>
 
@@ -327,6 +331,7 @@ Full-time
 
 
     </main>
+    <script src="scrict.js"></script>
 </body>
 
 </html>
