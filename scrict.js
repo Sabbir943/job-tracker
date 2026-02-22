@@ -5,8 +5,10 @@ const upperAllBtn=document.getElementById('all-btn');
 const upperInterviewBtn=document.getElementById('interview-btn');
 const upperRejectBtn=document.getElementById('rejected-btn');
 const allJobCart=document.getElementById('all-cart');
+const addNewDiv=document.getElementById('job-fillter');
 let interviewList=[];
 let rejectList=[];
+let currentFilter="all";
 function calculateCount(){
     totalCount.innerText=allJobCart.children.length;
     interviewCount.innerText=interviewList.length;
@@ -31,3 +33,97 @@ function toggleStyle(id){
 
 
 }
+
+document.getElementById('mainContainer')
+.addEventListener('click',function(event){
+ if(event.target.classList.contains('interview')){
+    // console.log('hello bangladesh')
+    const parentNode=event.target.closest('.jobs');
+    // console.log(parentNode);
+    if(!parentNode) return;
+    const companyName=parentNode.querySelector('.company-name').innerText;
+    const companyPosition=parentNode.querySelector('.empoloye-pos').innerText;
+    const empoloyeWork=parentNode.querySelector('.empoloye-work').innerText;
+    const applyBtn=parentNode.querySelector('.apply');
+    applyBtn.innerText='Interview';
+    applyBtn.classList.remove('bg-base-200');
+    applyBtn.classList.add('bg-green-400','text-black');
+    applyBtn.classList.remove('bg-red-400','text-white');
+    const notes=parentNode.querySelector('.notes').innerText;
+   
+    const jobInfo={
+        companyName,
+        companyPosition,
+        empoloyeWork,
+        applyBtn:'Interview',
+        notes,
+        interview:'Interview',
+        rejected:'Rejected'
+    }
+    const interviewExit=interviewList.find(item=>item.companyName===jobInfo.companyName);
+
+    if(!interviewExit){
+        interviewList.push(jobInfo);
+    }
+    
+    const rejectList=rejectList.filter(item=>item.companyName!=jobInfo.companyName);
+    calculateCount();
+ }
+
+ else if(event.target.classList.contains('rejected')){
+    // console.log('hello programmer');
+    const parentNode=event.target.closest('.jobs');
+    // console.log(parentNode);
+
+    const companyName=parentNode.querySelector('.company-name').innerText;
+    const companyPosition=parentNode.querySelector('.empoloye-pos').innerText;
+    const empoloyeWork=parentNode.querySelector('.empoloye-work').innerText;
+    const applyBtn=parentNode.querySelector('.apply');
+    applyBtn.innerText='Rejected';
+    applyBtn.classList.remove('bg-base-200');
+    applyBtn.classList.add('bg-red-400','text-black');
+    applyBtn.classList.remove('bg-green-400','text-white');
+    const notes=parentNode.querySelector('.notes').innerText;
+
+    const jobInfo={
+        companyName,
+        companyPosition,
+        empoloyeWork,
+        applyBtn:'Rejected',
+        notes,
+        interview:'Interview',
+        rejected:'Rejected'
+    }
+
+    const rejectExit=rejectList.find(item=>item.companyName===jobInfo.companyName);
+    if(!rejectExit){
+        rejectList.push(jobInfo);
+    }
+
+    const interviewList=interviewList.filter(item=>item.companyName!=jobInfo.companyName);
+    calculateCount();
+
+ }
+})
+
+
+
+function showAllCart(){
+addNewDiv.classList.add('hidden');
+allJobCart.classList.remove('hidden');
+}
+
+function renderInterview(){
+    addNewDiv.classList.remove('hidden');
+    allJobCart.classList.add('hidden');
+
+    addNewDiv.innerHTML='';
+    if (interviewList.length === 0) {
+        addNewDiv.innerHTML = '<div id="" class="space-y-3 mb-[20] flex flex-col justify-center items-center text-center border p-5 shadow rounded-md "><img class="" src="jobs.png" alt=""><p class="text-[#002C5C]  text-[22px] font-bold">No jobs available</p><p class="text-neutral/50">Check back soon for new job opportunities</p></div>'
+        
+        return;
+    }
+
+
+}
+
