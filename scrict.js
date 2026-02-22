@@ -124,6 +124,79 @@ function renderInterview(){
         return;
     }
 
+    for(const job of interviewList){
+        const div=document.createElement('div');
+        div.classList.add('flex' ,'flex-row', 'justify-between',' border p-5', 'shadow', 'rounded-md ','mb-[40px]');
+        div.innerHTML=`
+           <div>
+                    <h1  class="company-name text-[20px] text-[#002C5C] font-bold">${job.companyName}</h1>
+
+                    <p class="empoloye-pos text-neutral/50 mt-2 mb-2 font-bold ">${job.companyPosition}</p>
+
+                    <p class="empoloye-work text-neutral/50 font-bold">${job.empoloyeWork}</p>
+
+                    <div class="mt-2 mb-2">
+                        <button class="apply text-[#002C5C] p-2 rounded text-neutral/50 border font-bold bg-base-200">${job.applyBtn}</button>
+                    </div>
+
+
+                    <p class="notes mt-3 mb-3 text-neutral/50">${job.notes}</p>
+
+
+                    <button class="interview btn btn-outline btn-success font-bold">Interview</button>
+
+                    <button class="rejected btn btn-outline btn-secondary font-bold">Rejected</button>
+
+                </div>
+
+        `
+        addNewDiv.appendChild(div);
+    }
+
 
 }
+
+function renderRejected(){
+    addNewDiv.classList.remove('hidden');
+    allJobCart.classList.add('hidden');
+
+    addNewDiv.innerHTML='';
+    if (rejectList.length === 0) {
+        addNewDiv.innerHTML = '<div id="" class="space-y-3 mb-[20] flex flex-col justify-center items-center text-center border p-5 shadow rounded-md "><img class="" src="jobs.png" alt=""><p class="text-[#002C5C]  text-[22px] font-bold">No jobs available</p><p class="text-neutral/50">Check back soon for new job opportunities</p></div>'
+        
+        return;
+    }
+
+    for(const job of rejectList){
+        const div=document.createElement('div');
+        div.classList.add('flex' ,'flex-row', 'justify-between',' border p-5', 'shadow', 'rounded-md ','mb-[40px]');
+        div.innerHTML=`
+           <div>
+                    <h1  class="company-name text-[20px] text-[#002C5C] font-bold">${job.companyName}</h1>
+
+                    <p class="empoloye-pos text-neutral/50 mt-2 mb-2 font-bold ">${job.companyPosition}</p>
+
+                    <p class="empoloye-work text-neutral/50 font-bold">${job.empoloyeWork}</p>
+
+                    <div class="mt-2 mb-2">
+                        <button class="apply text-[#002C5C] p-2 rounded text-neutral/50 border font-bold bg-base-200">${job.applyBtn}</button>
+                    </div>
+
+
+                    <p class="notes mt-3 mb-3 text-neutral/50">${job.notes}</p>
+
+
+                    <button class="interview btn btn-outline btn-success font-bold">Interview</button>
+
+                    <button class="rejected btn btn-outline btn-secondary font-bold">Rejected</button>
+
+                </div>
+
+        `
+        addNewDiv.appendChild(div);
+    }
+
+
+}
+
 
