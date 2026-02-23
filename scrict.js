@@ -9,7 +9,7 @@ const rejectBtn = document.getElementById('rejected-btn');
 
 let interviewList = [];
 let rejectList = [];
-let currentFilter = 'all'; // Track current filter
+let currentFilter = 'all'; 
 
 // Calculate and update stats
 function calculate() {
@@ -164,6 +164,7 @@ document.getElementById('mainContainer')
         rejectList = rejectList.filter(item => item.companyName !== companyName);
         
         // Remove from DOM
+        alert('Are you sure? to delete job info')
         parentRoot.remove();
         
         // Update stats
