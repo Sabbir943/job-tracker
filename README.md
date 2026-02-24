@@ -8,7 +8,7 @@ getElementById:
 first value of id.
 
 getElementsByClassName:
-1.    The getElementsByClassName is method that return the collection of elements .
+1. The getElementsByClassName is method that return the collection of elements .
 2. Collection of elements like a html collection that similar to array list.
 3. By using this method,we find the length easily.
 
@@ -42,10 +42,10 @@ elements.It is go to upword. it moves inner elements to outer elements.
 Only one event listener instead of many.
 
 -->why is it useful for
-1.Better Performance
-2.Works for Dynamic Elements
-3.Cleaner Code
-Important for Large Applications
+1. Better Performance
+2. Works for Dynamic Elements
+3. Cleaner Code
+4. Important for Large Applications
 
 
 
